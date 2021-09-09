@@ -24,6 +24,10 @@ jobs:
         - uses: sburris/dependency-check-action@master
           with:
             Project-Name: webServer
+        - uses: actions/checkout@v2
+        - name: Install NPM dependencies
+          run: |
+            npm install --production --unsafe-perm
         - name: Archive dependency check reports
           uses: actions/upload-artifact@v1
             with:
