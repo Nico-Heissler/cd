@@ -21,10 +21,10 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
+        - uses: actions/checkout@v2        
         - uses: sburris/dependency-check-action@master
           with:
             Project-Name: webServer
-        - uses: actions/checkout@v2
         - name: Install NPM dependencies
           run: |
             npm install --production --unsafe-perm
