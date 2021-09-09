@@ -32,8 +32,7 @@ jobs:
           uses: actions/upload-artifact@v1
           with:
             name: reports
-            path: reports
-        - uses: actions/checkout@v2
+            path: reports            
         - name: build-push
           uses: docker/build-push-action@v1
           with:
