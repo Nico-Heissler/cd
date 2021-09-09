@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: '3'
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"labels":{"app":"webserver"},"name":"webserver-deployment","namespace":"default"},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"webserver"}},"template":{"metadata":{"labels":{"app":"webserver"}},"spec":{"containers":[{"image":"mywebserver:1.0","imagePullPolicy":"IfNotPresent","name":"webserver","ports":[{"containerPort":3000}]}]}}}}
+  creationTimestamp: '2021-09-08T09:04:30Z'
+  generation: 4
+  labels:
+    app: webserver
+  name: webserver-deployment
+  namespace: default
+  resourceVersion: '12167'
+  uid: 1dd61dbb-6932-424e-bb88-3318d5185f5e
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 3
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: webserver
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: webserver
+    spec:
+      containers:
+        - image: 'mywebserver:1.0'
+          imagePullPolicy: IfNotPresent
+          name: webserver
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+          volumeMounts:
+            - name: webserver-secret
+              mountPath: /var/secret
+              readOnly: true
+      volumes:
+        - name: webserver-secret
+          secret: null
+status:
+  availableReplicas: 3
+  conditions:
+    - lastTransitionTime: '2021-09-08T09:07:38Z'
+      lastUpdateTime: '2021-09-08T09:07:38Z'
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: 'True'
+      type: Available
+    - lastTransitionTime: '2021-09-08T09:04:31Z'
+      lastUpdateTime: '2021-09-08T10:27:04Z'
+      message: >-
+        ReplicaSet "webserver-deployment-7859f5f48c" has successfully
+        progressed.
+      reason: NewReplicaSetAvailable
+      status: 'True'
+      type: Progressing
+  observedGeneration: 4
+  readyReplicas: 3
+  replicas: 3
+  updatedReplicas: 3
