@@ -32,7 +32,12 @@ jobs:
           uses: actions/upload-artifact@v1
           with:
             name: reports
-            path: reports            
+            path: reports
+        - name: use klar
+          run: |
+            wget https://github.com/optiopay/klar/releases/download/v2.4.0/klar-2.4.0-linux-amd64 -O klar
+            chmod +x klar
+            CLAIR_ADDR=http://clair.3r1.co:6060 ./klar docker.io/<your-username>/<your-image>:<sha-tag>            
         - name: build-push
           uses: docker/build-push-action@v1
           with:
