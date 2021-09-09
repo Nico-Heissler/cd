@@ -30,9 +30,9 @@ jobs:
             npm install --production --unsafe-perm
         - name: Archive dependency check reports
           uses: actions/upload-artifact@v1
-            with:
-              name: reports
-              path: reports
+          with:
+            name: reports
+            path: reports
         - uses: actions/checkout@v2
         - name: build-push
           uses: docker/build-push-action@v1
