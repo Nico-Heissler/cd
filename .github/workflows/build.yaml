@@ -40,7 +40,9 @@ jobs:
             password: ${{ secrets.DOCKER_PASSWORD }}
             registry: docker.io
             repository: nheissler/cd
-            tag_with_sha: true
+            #tag_with_sha: true
+            #tag_with_ref: true
+            tags: latest
         - name: Run Trivy vulnerability scanner
           uses: aquasecurity/trivy-action@master
           with:
